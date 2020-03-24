@@ -15,13 +15,12 @@ load('data/sur.rda')
 
 source('R/process_query.R')
 #####################
-with %>% dplyr::group_by(scenario,basin,year)%>% dplyr::summarize(value=sum(value))->with
 
 
 supply %>% dplyr::select(-subresource)-> supply
 supply$basin=substr(supply$basin,1,nchar(supply$basin)-18)
 supply %>% dplyr::group_by(scenario,basin,year) %>% dplyr::summarize(value=sum(value)) -> supply
-supply %>% dplyr::left_join(with,by=c("scenario","basin","year")) -> scarcity
+supply %>% dplyr::left_join(with,by=c("ssp","soc","ag","gw","res","esm","tax","basin","year")) -> scarcity
 
 # calculate Water Scarcity Index as withdrawals over runoff
 
@@ -29,16 +28,16 @@ scarcity %>% dplyr::mutate(scarcity=value.y/value.x)-> scarcity
 
 # use the maximum value of scarcity over time
 
-scarcity %>% dplyr::group_by(basin,scenario) %>% dplyr::summarise(scarcity=max(scarcity)) -> mst
+scarcity %>% dplyr::group_by(basin,ssp,soc,ag,gw,res,esm,tax) %>% dplyr::summarise(scarcity=max(scarcity)) -> mst
 
 # use the maximum value of impact over time
 
 sur %>% dplyr::group_by(basin,ssp,soc,ag,gw,res,esm,tax) %>% dplyr::slice(netsurplus=which.max(abs(netsurplus))) -> msurt
 
 
-# organize dimensions into columns and make character columns numeric
+# make character columns numeric
 
-mst %>% ungroup() %>% process_query() -> mst
+mst %>% ungroup() -> mst
 
 
 mst$soc=as.numeric(mst$soc)
