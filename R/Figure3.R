@@ -49,6 +49,5 @@ p<-as_ggplot(gt) +                                # transform to a ggplot
 
 
 
-svg('Figure3.svg',height=3,width=10)
-p
-dev.off()
+ggsave('Figure3.pdf',height=3,width=10, dpi=300)
+
