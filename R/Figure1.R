@@ -2,7 +2,9 @@
 #library(gcammaptools)
 #library(ggplot2)
 #library(schoolmath)
-
+#library(cowplot)
+#library(gridExtra)
+#library(ggpubr)
 ##############################################################################################################
 ## A
 
@@ -116,16 +118,16 @@ p3<-ggplot(jf,aes(Log_Modulus,scarcity,color=basin))+geom_point(size=1)+theme_cl
 
 
 
-gt <- arrangeGrob(p3,                               # bar plot spaning two columns
+gt <- arrangeGrob(p3,                               
                   p1, p2,
                   ncol = 2, nrow = 2,
                   layout_matrix = rbind(c(1,2), c(1,3)))
 
 
-p<-as_ggplot(gt) +                                # transform to a ggplot
+p<-as_ggplot(gt) +                                
   draw_plot_label(label = c("A", "B", "C"), size = 15,x = c(0, 0.5, 0.5), y = c(1, 1, 0.5)) # Add labels
 
 
 p
-ggsave('Figure1.png',p,dpi=300)
+ggsave('Figure1.pdf',p,dpi=300, height=6, width = 10.5)
 
