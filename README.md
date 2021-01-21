@@ -17,3 +17,5 @@ The scenarios were then run in a HPC environment and queried using the `rgcam` p
 The raw supply and demand curve files are available upon request. These files were processed by pairing the necessary unlimited water and constrained water scenario files and using the `calc_net_surplus.R` function within the `R` folder on every market and in every timestep. The resulting change in surplus file is `data/sur.rda`. This data may be analyzed as is, but users should note that the units are in billions of 1975 USD. The figure-generating scripts convert to 2020 USD. 
 
 We used the `rpart` implementation of the CART algorithm to find influential factors driving high magnitudes of economic impact. We used both the classification (`method='class'`) and regression (`method='anova'`) approaches at different stages in the analysis. The script `R/bagged_CART.R` gives an example of how to generate a CART tree in a basin with bagging. 
+
+All requests for additional data should be made to flannery.dolan@tufts.edu.
