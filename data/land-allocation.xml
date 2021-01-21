@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<queries>
+   <aQuery>
+       <region name="USA"/>
+       <region name="Canada" />
+       <region name="Western Europe" />
+       <region name="Japan" />
+       <region name="Australia_NZ" />
+       <region name="Former Soviet Union" />
+       <region name="China" />
+       <region name="Middle East" />
+       <region name="Africa" />
+       <region name="Latin America" />
+       <region name="Southeast Asia" />
+       <region name="Eastern Europe" />
+       <region name="Korea" />
+       <region name="India" />
+       <region name="Africa_Eastern" />
+       <region name="Africa_Northern" />
+       <region name="Africa_Southern" />
+       <region name="Africa_Western" />
+       <region name="Brazil" />
+       <region name="Central America and Caribbean" />
+       <region name="Central Asia" />
+       <region name="EU-12" />
+       <region name="EU-15" />
+       <region name="Europe_Eastern" />
+       <region name="Europe_Non_EU" />
+       <region name="European Free Trade Association" />
+       <region name="Indonesia" />
+       <region name="Mexico" />
+       <region name="Pakistan" />
+       <region name="Russia" />
+       <region name="South Africa" />
+       <region name="South America_Northern" />
+       <region name="South America_Southern" />
+       <region name="Argentina" />
+       <region name="Colombia" />
+       <region name="South Asia" />
+       <region name="South Korea" />
+       <region name="Taiwan" />
+
+         <query title="land allocation by crop">
+            <axis1 name="region">region</axis1>
+            <axis2 name="Year">land-allocation[@year]</axis2>
+            <xPath buildList="true" dataName="LandLeaf" group="false" sumAll="false">/LandNode[@name='root' or @type='LandNode' (:collapse:)]//land-allocation/text()</xPath>
+            <comments/>
+         </query>
+   </aQuery>
+</queries>

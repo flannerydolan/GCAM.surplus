@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<queries>
+   <aQuery>
+   	<resourceQuery title="Max Renewable Water Potential - by Basin">
+   		<axis1 name="Basin">resource[@name]</axis1>
+   		<axis2 name="Year">max-annual-subresource[@year]</axis2>
+   		<xPath buildList="true" dataName="input" group="false" sumAll="false">*[@type = 'resource' and contains(@name, 'water withdrawals')]/*[@type = 'subresource' and contains(@name, 'runoff')]/max-annual-subresource/node()</xPath>
+   		<comments/>
+   	</resourceQuery>  
+   </aQuery>
+</queries>
