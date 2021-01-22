@@ -17,6 +17,7 @@ crops %>% process_query()->crops
 
 crops %>% filter(landleaf=="Crop") -> crops
 
+indus_price %>% mutate(value=value*4.82) -> indus_price #convert to 2020$
 #########################
 p1<-ggplot(crops,aes(value/1000,fill=as.factor(tax)))+geom_density(alpha=0.4)+
   scale_fill_manual(name="Tax",values=c("orange","cyan"),labels=c("FFICT","UCT"))+xlab(bquote("Area (million km"^"2"~")"))+
