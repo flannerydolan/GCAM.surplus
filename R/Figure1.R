@@ -33,7 +33,7 @@ scarcity %>% dplyr::mutate(scarcity=value.y/value.x)-> scarcity
 scarcity %>% dplyr::group_by(basin,ssp,soc,ag,gw,res,esm,tax) %>% dplyr::summarise(scarcity=max(scarcity)) -> mst
 
 # use the maximum value of impact over time
-
+sur  %>% mutate(netsurplus=netsurplus*4.82)->sur #convert to 2020$
 sur %>% dplyr::group_by(basin,ssp,soc,ag,gw,res,esm,tax) %>% dplyr::slice(netsurplus=which.max(abs(netsurplus))) -> msurt
 
 
