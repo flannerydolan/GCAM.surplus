@@ -5,6 +5,7 @@
 #library(cowplot)
 #library(gridExtra)
 #library(ggpubr)
+#library(viridis)
 ##############################################################################################################
 ## A
 
@@ -112,7 +113,7 @@ j %>% dplyr::filter(basin=="Arabian Peninsula"| basin=="Indus" |basin=="Lower Co
 
 #plot
 p3<-ggplot(jf,aes(Log_Modulus,scarcity,color=basin))+geom_point(size=1)+theme_classic()+
-  ylab('Physical Water Scarcity')+xlab('Log-Modulus of Impact')+
+  ylab('Physical Water Scarcity')+xlab('Log-Modulus of Impact')+scale_color_viridis(discrete=TRUE)+
   theme(legend.box.background = element_rect(colour = "black"),legend.background = element_blank(),text=element_text(size=14),axis.text=element_text(size=14), legend.position = c(.75,.85))
 
 
