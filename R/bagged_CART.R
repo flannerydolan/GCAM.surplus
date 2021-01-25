@@ -50,6 +50,8 @@ bagged<-rpart(bagged_result~.,data=bagdat,method='anova',control=c(maxdepth=4),c
 bagged$frame$var
 
 
+
 rpart.plot(bagged)
 
 # to remake Figure 12, use bagged$frame$var[1] for all basins
+

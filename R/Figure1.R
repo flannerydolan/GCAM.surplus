@@ -2,7 +2,10 @@
 #library(gcammaptools)
 #library(ggplot2)
 #library(schoolmath)
-
+#library(cowplot)
+#library(gridExtra)
+#library(ggpubr)
+#library(viridis)
 ##############################################################################################################
 ## A
 
@@ -38,7 +41,9 @@ scarcity %>% dplyr::group_by(basin,ssp,soc,ag,gw,res,esm,tax) %>% dplyr::summari
 
 # use the maximum value of impact over time
 
-sur %>% mutate(netsurplus=4.82*netsurplus)-> sur # 2020 $ from 1975 $
+
+
+sur  %>% mutate(netsurplus=netsurplus*4.82)->sur #convert to 2020$
 
 sur %>% dplyr::group_by(basin,ssp,soc,ag,gw,res,esm,tax) %>% dplyr::slice(netsurplus=which.max(abs(netsurplus))) -> msurt
 
@@ -120,22 +125,35 @@ j %>% dplyr::filter(basin=="Arabian Peninsula"| basin=="Indus" |basin=="Lower Co
 
 #plot
 p3<-ggplot(jf,aes(Log_Modulus,scarcity,color=basin))+geom_point(size=1)+theme_classic()+
+<<<<<<< HEAD
   ylab('Physical Water Scarcity')+xlab('Log-Modulus of Impact')+scale_color_viridis(discrete = TRUE)+
+=======
+  ylab('Physical Water Scarcity')+xlab('Log-Modulus of Impact')+scale_color_viridis(discrete=TRUE)+
+>>>>>>> d5781f975149ae0b0e268b3b141b55fd7f827b1f
   theme(legend.box.background = element_rect(colour = "black"),legend.background = element_blank(),text=element_text(size=14),axis.text=element_text(size=14), legend.position = c(.75,.85))
 
 
 
 
+<<<<<<< HEAD
 gt <- arrangeGrob(p3,                               # bar plot spanning two columns
+=======
+gt <- arrangeGrob(p3,
+>>>>>>> d5781f975149ae0b0e268b3b141b55fd7f827b1f
                   p1, p2,
                   ncol = 2, nrow = 2,
                   layout_matrix = rbind(c(1,2), c(1,3)))
 
 
-p<-as_ggplot(gt) +                                # transform to a ggplot
+p<-as_ggplot(gt) +
   draw_plot_label(label = c("A", "B", "C"), size = 15,x = c(0, 0.5, 0.5), y = c(1, 1, 0.5)) # Add labels
 
 
+<<<<<<< HEAD
 ggsave('Figure1.pdf',p,dpi=300,height=6,width=8)
 
+=======
+p
+ggsave('Figure1.pdf',p,dpi=300, height=6, width = 10.5)
+>>>>>>> d5781f975149ae0b0e268b3b141b55fd7f827b1f
 
