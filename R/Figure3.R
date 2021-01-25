@@ -7,16 +7,19 @@
 # Generate Figure 3
 
 #################### load data
+# please note that this data may not load from cloning the github repo. If it doesn't, download the data manually from Github
+
 load('data/crops.rda')
 load('data/indus_price.rda')
 load('data/ap_with.rda')
 
-
+source('R/process_query.R')
 
 crops %>% process_query()->crops
 
 crops %>% filter(landleaf=="Crop") -> crops
 
+indus_price %>% mutate(value=value*4.82) -> indus_price # transform 1975 $ to 2020 $
 #########################
 p1<-ggplot(crops,aes(value/1000,fill=as.factor(tax)))+geom_density(alpha=0.4)+
   scale_fill_manual(name="Tax",values=c("orange","cyan"),labels=c("FFICT","UCT"))+xlab(bquote("Area (million km"^"2"~")"))+
@@ -37,10 +40,9 @@ p3<-ggplot(ap_with,aes(value,fill=as.factor(tax)),alpha=.04)+geom_density(alpha=
 
 
 
-gt <- arrangeGrob(p1,                               # bar plot spaning two columns
+gt <- arrangeGrob(p1,                               # bar plot spanning two columns
                   p3, p2,                               # box plot and scatter plot
                   ncol = 1, nrow = 3,
-                  #layout_matrix = rbind(c(1,2), c(1,3)))
                   layout_matrix = rbind(c(1,2,3)))
 
 
@@ -49,6 +51,5 @@ p<-as_ggplot(gt) +                                # transform to a ggplot
 
 
 
-svg('Figure3.svg',height=3,width=10)
-p
-dev.off()
+ggsave('Figure3.pdf',height=3,width=10,dpi=300)
+

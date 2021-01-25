@@ -9,6 +9,8 @@
 # make map of physical scarcity, mean over scenario, max over time
 
 ################load data
+
+# please note that this data may not load from cloning the github repo. If it doesn't, download the data manually from Github
 load('data/with.rda')
 load('data/supply.rda')
 load('data/sur.rda')
@@ -20,6 +22,10 @@ source('R/process_query.R')
 supply %>% dplyr::select(-subresource)-> supply
 supply$basin=substr(supply$basin,1,nchar(supply$basin)-18)
 supply %>% dplyr::group_by(scenario,basin,year) %>% dplyr::summarize(value=sum(value)) -> supply
+
+with %>% process_query()->with
+supply%>% ungroup() %>% process_query()->supply
+
 supply %>% dplyr::left_join(with,by=c("ssp","soc","ag","gw","res","esm","tax","basin","year")) -> scarcity
 
 # calculate Water Scarcity Index as withdrawals over runoff
@@ -31,6 +37,8 @@ scarcity %>% dplyr::mutate(scarcity=value.y/value.x)-> scarcity
 scarcity %>% dplyr::group_by(basin,ssp,soc,ag,gw,res,esm,tax) %>% dplyr::summarise(scarcity=max(scarcity)) -> mst
 
 # use the maximum value of impact over time
+
+sur %>% mutate(netsurplus=4.82*netsurplus)-> sur # 2020 $ from 1975 $
 
 sur %>% dplyr::group_by(basin,ssp,soc,ag,gw,res,esm,tax) %>% dplyr::slice(netsurplus=which.max(abs(netsurplus))) -> msurt
 
@@ -60,8 +68,10 @@ medscarce<-add_region_ID(medscarce,lookupfile = 'data/lookup_basin.txt')
 
 medscarce %>% mutate(level=ifelse(scarcity<.2,"1",ifelse(scarcity<.4,"2",ifelse(scarcity<1,"3","4")))) -> medscarce
 
+medscarce %>% na.omit()->medscarce
 #plot scarcity
-p1<-plot_GCAM(map.basin235,col='level',gcam_df = medscarce,legend=T,proj=robin,gcam_key = 'id') + ggplot2::scale_fill_manual(breaks=c("Low","Medium","High","Extreme"),values=c("olivedrab3","gold1","darkorange","darkred"),na.value=gray(.5))
+p1<-plot_GCAM(map.basin235,col='level',gcam_df = medscarce,legend=T,proj=robin,gcam_key = 'id') +
+  scale_fill_manual(name="",labels=c("0-0.2","0.2-0.4","0.4-1","1+"),values=c("olivedrab3","gold1","darkorange","darkred"),na.value=gray(.5))
 
 
 #################################################################################################################################
@@ -91,7 +101,7 @@ medsur %>% mutate(level=ifelse(Log_Modulus > 0,"1",ifelse(Log_Modulus>-.5,"2",if
 # plot
 
 p2<-plot_GCAM(map.basin235,col='level',gcam_df = medsur,legend=T,proj=robin,gcam_key = 'id') +
-  ggplot2::scale_fill_manual(breaks=c("Low","Medium","High","Extreme"),values=c("olivedrab3","gold1","darkorange","darkred"),na.value=gray(.5))
+  ggplot2::scale_fill_manual(name="",labels=c(">0","-0.5-0","-1--0.5","<-1"),values=c("olivedrab3","gold1","darkorange","darkred"),na.value=gray(.5))
 
 
 ##################################################################
@@ -110,13 +120,13 @@ j %>% dplyr::filter(basin=="Arabian Peninsula"| basin=="Indus" |basin=="Lower Co
 
 #plot
 p3<-ggplot(jf,aes(Log_Modulus,scarcity,color=basin))+geom_point(size=1)+theme_classic()+
-  ylab('Physical Water Scarcity')+xlab('Log-Modulus of Impact')+
+  ylab('Physical Water Scarcity')+xlab('Log-Modulus of Impact')+scale_color_viridis(discrete = TRUE)+
   theme(legend.box.background = element_rect(colour = "black"),legend.background = element_blank(),text=element_text(size=14),axis.text=element_text(size=14), legend.position = c(.75,.85))
 
 
 
 
-gt <- arrangeGrob(p3,                               # bar plot spaning two columns
+gt <- arrangeGrob(p3,                               # bar plot spanning two columns
                   p1, p2,
                   ncol = 2, nrow = 2,
                   layout_matrix = rbind(c(1,2), c(1,3)))
@@ -126,6 +136,6 @@ p<-as_ggplot(gt) +                                # transform to a ggplot
   draw_plot_label(label = c("A", "B", "C"), size = 15,x = c(0, 0.5, 0.5), y = c(1, 1, 0.5)) # Add labels
 
 
-p
-ggsave('Figure1.png',p,dpi=300)
+ggsave('Figure1.pdf',p,dpi=300,height=6,width=8)
+
 

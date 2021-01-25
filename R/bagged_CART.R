@@ -28,7 +28,7 @@ bagged_models=list()
 for (i in 1:n_model)
 {
   train_index=sample.int(nrow(ap),size=round(nrow(ap)*0.6),replace = T)
-  
+
   bagged_models=c(bagged_models,list(rpart(netsurplus~.,ap[train_index,],control=rpart.control(minsplit=6))))
 }
 ##Getting estimate from the bagged model
@@ -51,3 +51,5 @@ bagged$frame$var
 
 
 rpart.plot(bagged)
+
+# to remake Figure 12, use bagged$frame$var[1] for all basins

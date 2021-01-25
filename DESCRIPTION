@@ -2,7 +2,7 @@ Package: GCAM.surplus
 Title: Calculate total difference in consumer producer surplus and create plots from Dolan et al. 2020
 Version: 0.0.0.9000
 Authors@R: person("Flannery", "Dolan", email = "flannery.dolan@tufts.edu", role = c("aut", "cre"))
-Description: This package can be used for generating the difference in consumer producer surplus from GCAM scenarios. Additional functions include querying GCAM databases and creating the plots featured in Dolan et al. 2020. 
+Description: This package can be used for generating the difference in consumer producer surplus from GCAM scenarios. Additional functions include querying GCAM databases and creating the plots featured in Dolan et al. 2021. 
 Depends: R (>= 3.4.3)
 Imports:
 	dplyr (>= 0.8.0.1),
@@ -14,8 +14,9 @@ Imports:
 	schoolmath (>= 0.4),
 	cowplot (>= 0.9.3),
 	rpart (>= 4.1.13),
-	rpart.plot (>= 3.0.5)
-License: What license is it under?
+	rpart.plot (>= 3.0.5),
+	viridis
+License: MIT
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.0

@@ -1,17 +1,39 @@
-#library(zoo)
-#library(dplyr)
-#library(ggplot2)
-#library(gridExtra)
+library(zoo)
+library(dplyr)
+library(ggplot2)
+library(gridExtra)
 
 ########################
 # Generate Figure 2
 
 ###################### load data
-load('data/esm_uncert.rda')
-#######################
+# please note that this data may not load from cloning the github repo. If it doesn't, download the data manually from Github
 
-#find the scenarios with the maximum and minimum mean uncertainty of impact over time 
-esm_uncert %>% dplyr::group_by(basin,ssp,soc,ag,gw,res,tax)%>% dplyr::summarize(mean=mean(impact_max-impact_min,na.rm = T)) %>% 
+load('data/esm_uncert.rda')
+# or
+load('data/sur.rda')
+load('data/supply.rda')
+
+
+setwd('/Users/flannerydolan/Box Sync/GCAM.surplus/')
+source('R/process_query.R')
+#####################
+
+
+supply %>% dplyr::select(-subresource)-> supply
+supply$basin=substr(supply$basin,1,nchar(supply$basin)-18)
+supply %>% dplyr::group_by(scenario,basin,year) %>% dplyr::summarize(value=sum(value)) -> supply
+supply%>% ungroup() %>% process_query()->supply
+
+#######################
+#also possible to skip these steps and use esm_uncert. this shows where that data comes from
+sur %>% dplyr::mutate(impact=sign(netsurplus)*log10(abs(netsurplus)+1)) -> sur
+
+supply %>% left_join(sur, by=c("ssp","soc","ag","gw","res","tax")) %>%
+  summarize(runoff_min=min(value,na.rm=T),runoff_max=max(value,na.rm=T),impact_min=min(impact,na.rm=T),impact_max=max(impact,na.rm=T)) -> esm_uncert
+
+#find the scenarios with the maximum and minimum mean uncertainty of impact over time
+esm_uncert %>% dplyr::group_by(basin,ssp,soc,ag,gw,res,tax)%>% dplyr::summarize(mean=mean(impact_max-impact_min,na.rm = T)) %>%
   dplyr::group_by(basin) %>% dplyr::slice(which.max(mean)) -> maxmean
 
 
@@ -81,7 +103,6 @@ p4<-ggplot(locomin,aes(year,runoff_max))+geom_line(aes(y=runoff_min),color="red"
 
 p<-ggarrange(p1,p2,p3,p4,nrow=2,ncol=2,labels=c('A','B','C','D'))
 
-ggsave('min_human_uncertainty.png',p,dpi=300)
 
 
 
@@ -157,4 +178,4 @@ pp<-ggarrange(p5,p6,p7,p8,nrow=2,ncol=2,labels=c('E','F','G','H'))
 
 P<-ggarrange(p,pp,nrow=2)
 
-ggsave('all_uncertainty_figs.png',P,dpi=300)
+ggsave('Figure2.pdf',P,dpi=300,height=10,width=7.5,units = "in")
