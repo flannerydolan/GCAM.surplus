@@ -1,5 +1,5 @@
 # GCAM.surplus
-Code for the figures and analysis in the Dolan et al. 2021 paper "Evaluating the economic impact of water scarcity in a changing world."
+Code for the figures and analysis in the Dolan et al. 2021 paper "Evaluating the economic impact of water scarcity in a changing world" submitted to Nature Communications (in review).
 
 This work used the Global Change Analysis Model (GCAM) to simulate thousands of future scenarios and obtain estimates of future water supply and demand. We calculated the change in economic surplus between scenarios with an unlimited supply of water and their corresponding scenarios with physical constraints on water availability. We find the drivers of economic impact in different basins using the CART algorithm.
 
