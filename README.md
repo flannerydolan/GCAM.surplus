@@ -6,7 +6,7 @@ This work used the Global Change Analysis Model (GCAM) to simulate thousands of 
 This work can be replicated using the following approach. 
 
 The GCAM is an open source model available at https://github.com/JGCRI/gcam-core/releases. 
-This work used a private branch of the model, but version 5.1.1 should yield similar if not identical results. 
+GCAM version 5.1.1 should be used to most closely replicate our results. 
 
 Many of the input files used in the experiment are not available in the public release version but are available by request. 
 
