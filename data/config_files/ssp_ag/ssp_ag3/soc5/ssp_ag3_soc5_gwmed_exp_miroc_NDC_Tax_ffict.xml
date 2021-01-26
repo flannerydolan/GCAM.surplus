@@ -1,0 +1,127 @@
+<Configuration>
+	<Files>
+		<Value name="xmlInputFileName">../input/gcam-data-system/xml/modeltime-xml/modeltime.xml</Value>
+		<Value name="BatchFileName">batch_ag.xml</Value>
+		<Value name="policy-target-file">../input/policy/forcing_target_4p5.xml</Value>
+		<Value name="GHGInputFileName">../input/magicc/inputs/input_gases.emk</Value>
+		<Value append-scenario-name="0" name="xmldb-location" write-output="1">../output/ssp_ag/ssp_ag3/soc5/db_ssp_ag3_soc5_gwmed_exp_miroc_NDC_Tax_ffict</Value>
+		<Value append-scenario-name="0" name="xmlOutputFileName" write-output="1">../output/output.xml</Value>
+		<Value append-scenario-name="1" name="xmlDebugFileName" write-output="1">debug.xml</Value>
+		<Value append-scenario-name="0" name="climatFileName" write-output="1">gas.emk</Value>
+		<Value append-scenario-name="0" name="outFileName" write-output="1">outFile.csv</Value>
+		<Value append-scenario-name="1" name="costCurvesOutputFileName" write-output="1">cost_curves.xml</Value>
+		<Value append-scenario-name="0" name="batchCSVOutputFile" write-output="1">batch-csv-out.csv</Value>
+		<Value append-scenario-name="0" name="supplyDemandOutputFileName" write-output="0">SDCurves.csv</Value>
+		<Value append-scenario-name="0" name="flow-graph" write-output="0">gcam-flow-graph.dot</Value>
+		<Value append-scenario-name="0" name="dependencyGraphName" write-output="0">DependencyGraph.dot</Value>
+		<Value append-scenario-name="0" name="landAllocatorGraphName" write-output="0">LandAllocatorGraph.dot</Value>
+		<Value append-scenario-name="0" name="ObjectSGMFileName" write-output="0">ObjectSGMout.csv</Value>
+		<Value append-scenario-name="0" name="ObjectSGMGenFileName" write-output="0">ObjectSGMGen.csv</Value>
+		<Value append-scenario-name="0" name="dbFileName" write-output="0">../output/output.mdb</Value>
+	</Files>
+	<ScenarioComponents>
+		<Value name="climate">../input/climate/hector.xml</Value>
+		<Value name="interest_rate">../input/gcam-data-system/xml/socioeconomics-xml/interest_rate.xml</Value>
+		<Value name="socioeconomics">../input/gcam-data-system/xml/socioeconomics-xml/socioeconomics_gSSP2.xml</Value>
+
+		<Value name="resources">../input/gcam-data-system/xml/energy-xml/resources.xml</Value>
+		<Value name="energy_supply">../input/gcam-data-system/xml/energy-xml/en_supply.xml</Value>
+		<Value name="energy_transformation">../input/gcam-data-system/xml/energy-xml/en_transformation.xml</Value>
+		
+		<Value name="elec_water_base">../input/gcam-data-system/xml/water-xml/electricity_water.xml</Value>
+		<Value name="heat">../input/gcam-data-system/xml/energy-xml/heat.xml</Value>
+		<Value name="hydrogen">../input/gcam-data-system/xml/energy-xml/hydrogen.xml</Value>
+		<Value name="energy_distribution">../input/gcam-data-system/xml/energy-xml/en_distribution.xml</Value>
+		<Value name="industry">../input/gcam-data-system/xml/energy-xml/industry.xml</Value>
+		<Value name="industry_income_elas">../input/gcam-data-system/xml/energy-xml/industry_incelas_gssp2.xml</Value>
+		<Value name="cement">../input/gcam-data-system/xml/energy-xml/cement.xml</Value>
+		<Value name="cement_income_elas">../input/gcam-data-system/xml/energy-xml/cement_incelas_gssp2.xml</Value>
+		<Value name="fertilizer_energy">../input/gcam-data-system/xml/energy-xml/en_Fert.xml</Value>
+		<Value name="hddcdd">../input/gcam-data-system/xml/energy-xml/HDDCDD_constdd_no_GCM.xml</Value>
+		<Value name="building">../input/gcam-data-system/xml/energy-xml/building_det.xml</Value>
+		<Value name="transportation">../input/gcam-data-system/xml/energy-xml/transportation_UCD_CORE.xml</Value>
+		<Value name="carbon_content">../input/gcam-data-system/xml/energy-xml/Ccoef.xml</Value>
+		<Value name="carbon_storage">../input/gcam-data-system/xml/energy-xml/Cstorage.xml</Value>
+
+
+		<Value name="ag_base">../input/gcam-data-system/xml/aglu-xml/ag_For_Past_bio_base_IRR_MGMT.xml</Value>
+		<Value name="ag_cost">../input/gcam-data-system/xml/aglu-xml/ag_cost_IRR_MGMT.xml</Value>
+		<Value name="ag_prodchange">../input/gcam-data-system/xml/aglu-xml/ag_prodchange_ref_IRR_MGMT.xml</Value>
+		<Value name="residue_bio">../input/gcam-data-system/xml/aglu-xml/resbio_input_IRR_MGMT.xml</Value>
+		<Value name="animal">../input/gcam-data-system/xml/aglu-xml/an_input.xml</Value>
+		<Value name="fertilizer">../input/gcam-data-system/xml/aglu-xml/ag_Fert_IRR_MGMT.xml</Value>
+		<Value name="land1">../input/gcam-data-system/xml/aglu-xml/land_input_1.xml</Value>
+		<Value name="land2">../input/gcam-data-system/xml/aglu-xml/land_input_2.xml</Value>
+		<Value name="land3">../input/gcam-data-system/xml/aglu-xml/land_input_3_IRR.xml</Value>
+		<Value name="land4">../input/gcam-data-system/xml/aglu-xml/land_input_4_IRR_MGMT.xml</Value>
+		<Value name="land5">../input/gcam-data-system/xml/aglu-xml/land_input_5_IRR_MGMT.xml</Value>
+		<Value name="protected_land2">../input/gcam-data-system/xml/aglu-xml/protected_land_input_2.xml</Value>
+		<Value name="protected_land3">../input/gcam-data-system/xml/aglu-xml/protected_land_input_3.xml</Value>
+		<Value name="demand">../input/gcam-data-system/xml/aglu-xml/demand_input.xml</Value>
+		<Value name="bio_trade">../input/gcam-data-system/xml/aglu-xml/bio_trade.xml</Value>
+
+		<Value name="ind_urb_proc">../input/gcam-data-system/xml/emissions-xml/ind_urb_processing_sectors.xml</Value>
+		<Value name="nonco2_energy">../input/gcam-data-system/xml/emissions-xml/all_energy_emissions.xml</Value>
+		<Value name="nonco2_fgas">../input/gcam-data-system/xml/emissions-xml/all_fgas_emissions.xml</Value>
+		<Value name="nonco2_unmgd">../input/gcam-data-system/xml/emissions-xml/all_unmgd_emissions.xml</Value>
+		<Value name="nonco2_aglu">../input/gcam-data-system/xml/emissions-xml/all_aglu_emissions_IRR_MGMT.xml</Value>
+		<Value name="nonco2_aglu_prot">../input/gcam-data-system/xml/emissions-xml/all_protected_unmgd_emissions.xml</Value>
+		
+		<Value name="unlim_supply_water">../input/gcam-data-system/xml/water-xml/unlimited_water_supply.xml</Value>
+		
+		
+		
+		
+		<Value name="water_supply_constrained">../input/gcam-data-system/xml/water-xml/old/water_supply_wg_md.xml</Value>
+		
+		
+		
+		
+		
+
+		<Value name="water_mapping">../input/gcam-data-system/xml/water-xml/water_mapping.xml</Value>
+		<Value name="ag_water">../input/gcam-data-system/xml/aglu-xml/ag_water_input_IRR_MGMT.xml</Value>
+		<Value name="elec_water_coef">../input/gcam-data-system/xml/water-xml/electricity_water_coefs.xml</Value>
+		<Value name="nonco2_elec_water">../input/gcam-data-system/xml/water-xml/water_elec_emissions.xml</Value>
+		<Value name="ind_water">../input/gcam-data-system/xml/water-xml/water_demand_industry.xml</Value>
+		<Value name="an_water">../input/gcam-data-system/xml/water-xml/water_demand_livestock.xml</Value>
+		<Value name="municipal_water">../input/gcam-data-system/xml/water-xml/water_demand_municipal.xml</Value>
+		<Value name="primary_ene_water">../input/gcam-data-system/xml/water-xml/water_demand_primary.xml</Value>
+
+		<Value name="bio_feedstock_limit">../input/gcam-data-system/xml/energy-xml/liquids_limits.xml</Value>
+		<Value name="bio_elec_w_feed_limit">../input/gcam-data-system/xml/water-xml/water_elec_liquids_limits.xml</Value>
+		<Value name="bio_neg_emiss_budget">../input/gcam-data-system/xml/energy-xml/negative_emissions_budget_gSSP2.xml</Value>
+		<Value name="solver">../input/solution/broyden_no_weird.xml</Value>
+		
+		<Value name="tax">../input/policy/carbon_tax_ndc_contamb.xml</Value>
+		<Value name="policy">../input/policy/global_uct.xml</Value>
+	<Value name="lud">../input/policy/global_ffict.xml</Value><Value name="water_supply">../input/gcam-data-system/xml/water-xml/old/water_supply_wg_md.xml</Value><Value name="climate_hydro">../input/gcam-data-system/xml/water-xml/hydropower/hydro_miroc-esm-chem_4p5.xml</Value><Value name="aglu">../input/gcam-data-system/xml/water-xml/crop_yield/ag_prodchange_rcp4p5_miroc_pdssat_SSP3.xml</Value><Value name="climate_runoff">../input/gcam-data-system/xml/water-xml/water_supply/water_cc_miroc_4p5_exp_wg.xml</Value><Value name="aglu">../input/gcam-data-system/xml/aglu-xml/food_SSP3.xml</Value><Value name="aglu">../input/gcam-data-system/xml/aglu-xml/ag_prodchange_ssp3_IRR_MGMT.xml</Value><Value name="socioeconomics">../input/gcam-data-system/xml/socioeconomics-xml/socioeconomics_SSP5.xml</Value><Value name="ind">../input/gcam-data-system/xml/energy-xml/industry_incelas_ssp3.xml</Value><Value name="cement">../input/gcam-data-system/xml/energy-xml/cement_incelas_ssp3.xml</Value><Value name="trn">../input/extra/Sean/transportation_UCD_SSP3.xml</Value><Value name="bld">../input/gcam-data-system/xml/energy-xml/building_SSP3.xml</Value><Value name="ccs">../input/gcam-data-system/xml/energy-xml/ccs_supply_low.xml</Value><Value name="resource_extraction">../input/gcam-data-system/xml/energy-xml/resources_SSP3.xml</Value><Value name="nonco2">../input/gcam-data-system/xml/emissions-xml/delete_gdp_control.xml</Value><Value name="nonco2">../input/gcam-data-system/xml/emissions-xml/ssp34_emissions_factors.xml</Value><Value name="bio_neg_emiss_budget">../input/gcam-data-system/xml/energy-xml/negative_emissions_budget_SSP3.xml</Value><Value name="water_input">../input/gcam-data-system/xml/water-xml/water_demand/ag_water_input_ssp3_IRR_MGMT.xml</Value><Value name="electricity_water_coef">../input/gcam-data-system/xml/water-xml/water_demand/electricity_water_coefs_ssp3.xml</Value><Value name="electricity_water">../input/gcam-data-system/xml/water-xml/water_demand/electricity_water_ssp3.xml</Value><Value name="resbio">../input/gcam-data-system/xml/water-xml/water_demand/resbio_input_ssp3_IRR_MGMT.xml</Value><Value name="water_demand_industry">../input/gcam-data-system/xml/water-xml/water_demand/water_demand_industry_ssp3.xml</Value><Value name="water_demand_municipal">../input/gcam-data-system/xml/water-xml/water_demand/water_demand_municipal_mod_ssp3.xml</Value><Value name="wind">../input/gcam-data-system/xml/energy-xml/wind_low.xml</Value><Value name="solar">../input/gcam-data-system/xml/energy-xml/solar_low.xml</Value><Value name="geothermal">../input/gcam-data-system/xml/energy-xml/geo_low.xml</Value><Value name="bio">../input/gcam-data-system/xml/energy-xml/en_transformation_low.xml</Value><Value name="bio">../input/gcam-data-system/xml/energy-xml/elec_bio_low.xml</Value><Value name="nuclear">../input/gcam-data-system/xml/energy-xml/nuclear_low.xml</Value><Value name="ccs">../input/gcam-data-system/xml/energy-xml/no_offshore_ccs.xml</Value><Value name="bio_trade">../input/gcam-data-system/xml/aglu-xml/ssp3_bio_trade.xml</Value></ScenarioComponents>
+	<Strings>
+		<Value name="scenarioName">ssp_ag3_soc5_gwmed_exp_miroc_NDC_Tax_ffict</Value>
+		<Value name="debug-region">USA</Value>
+		<Value name="MAGICC-input-dir">../input/magicc/inputs</Value>
+		<Value name="MAGICC-output-dir">../output</Value>
+	</Strings>
+	<Bools>
+		<Value name="CalibrationActive">1</Value>
+		<Value name="BatchMode">0</Value>
+		<Value name="find-path">0</Value>
+		<Value name="createCostCurve">0</Value>
+		<Value name="debugChecking">0</Value>
+		<Value name="simulActive">1</Value>
+		<Value name="PrintValuesOnGraphs">1</Value>
+		<Value name="ShowNullPaths">0</Value>
+		<Value name="PrintPrices">1</Value>
+	</Bools>
+	<Ints>
+		<Value name="numMarketsToFindSD">10</Value>
+		<Value name="numPointsForSD">21</Value>
+		<Value name="numPointsForCO2CostCurve">5</Value>
+		<Value name="carbon-output-start-year">1705</Value>
+		<Value name="climateOutputInterval">5</Value>
+		<Value name="parallel-grain-size">50</Value>
+		<Value name="stop-period">-1</Value>
+	</Ints>
+	<Doubles>
+	</Doubles>
+</Configuration>
